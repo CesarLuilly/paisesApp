@@ -1,27 +1,6 @@
 <div class="row container mt-4">
     <div class="col-3">
-        <h2>Busquedad</h2>
-        <hr>
-        <!-- el routerLinkActiveOptions solo se pone 
-            cuando el router link viene vacio. -->
-        <ul>
-            <li routerLink=""
-                routerLinkActive = "active"
-                [routerLinkActiveOptions] = "{exact : true}"
-                class="list-group-item">
-                Buscar Pais
-            </li>
-            <li routerLink="region"
-                routerLinkActive = "active"
-                class="list-group-item">
-                Por region
-            </li>
-            <li routerLink="capital"
-            routerLinkActive = "active"
-                class="list-group-item">
-                Por capital
-            </li>
-        </ul>
+        <app-sidebar></app-sidebar>
     </div>
 
     <div class="col">
