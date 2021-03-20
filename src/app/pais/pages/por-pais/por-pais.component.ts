@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PaisService } from '../../services/pais.service';
+import { ICountry } from '../../Interfaces/ICountry';
 
 @Component({
   selector: 'app-por-pais',
@@ -11,6 +12,7 @@ export class PorPaisComponent {
 
   public termino : any = "Hola Mundo";
   public hayError : boolean = false;
+  public paises : ICountry[] = [];
 
   constructor(
     //              //inyeciond e servicio.
@@ -23,17 +25,19 @@ export class PorPaisComponent {
     this.hayError = false;
 
     this._paisService.buscarPais(this.termino).subscribe(
-      (resp) => {
-        console.log(resp);
+      (paises : ICountry[]) => {
+        console.log(paises);
+        this.paises = [...paises];
       }, 
       (err) => {
         this.hayError = true;
         console.log('Error');
         console.log(err);
+        //          //Limpio los paises.
+        this.paises = [];
       }
     );
 
-    
     console.log(this.termino);
   }
 }

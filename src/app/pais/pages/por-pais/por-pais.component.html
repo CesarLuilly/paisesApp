@@ -19,7 +19,7 @@
     No se encontro con el termino {{termino}}.
 </div>
 
-<div *ngIf="!hayError" class="row">
+<div *ngIf="paises.length > 0" class="row">
     <div class="col">
         <table class="table table-hover">
             <thead>
@@ -32,14 +32,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let pais of paises; let i = index;">
                     <td>
-                        1
+                        {{i + 1}}
                     </td>
-                    <td>Bandera</td>
-                    <td>nombre</td>
-                    <td>poblacion</td>
-                    <a href="">Link</a>
+                    <td>
+                        <img class="small-flag" [src]="pais.flag" alt="">
+                    </td>
+                    <td>{{pais.name}}</td>
+                    <td>{{pais.population | number}}</td>
+                        <!-- SI lo colocamos entre llaves cuadradas quiere decir 
+                            que vamos a construir la informacion de la ruta. 
+                            Por ejemplo, necesito navegar al pais. -->
+                        <!-- Para utilizar el RouterLink necesito importar el
+                            RouterModule en el servicio mas cercano, que en este
+                            caso el modulo de paises. -->
+                        <a [routerLink] = "['/pais', pais.alpha2Code]">Link</a>
                 </tr>
             </tbody>
         </table>

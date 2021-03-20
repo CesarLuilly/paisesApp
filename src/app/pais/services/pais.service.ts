@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ICountry } from '../Interfaces/ICountry';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class PaisService {
   public buscarPais(
 
     termino : string 
-    ) :  Observable<any>
+    ) :  Observable<ICountry[]>
   {
     const url = `${ this._apiUrl }/name/${ termino }`;
     
@@ -38,6 +39,6 @@ export class PaisService {
     //     catchError(err => of([]))   
     //   );
 
-    return this._http.get( url );
+    return this._http.get<ICountry[]>( url );
   }
 }
